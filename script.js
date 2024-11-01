@@ -13,7 +13,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-
 document.addEventListener('DOMContentLoaded', function () {
     const products = [];
     const productList = document.getElementById('productList');
@@ -25,61 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const productsPerPage = 6;
     let currentPage = 1;
 
-    // Tạo input cho danh mục khác
-    const otherCategoryInput = document.createElement('input');
-    otherCategoryInput.type = 'text';
-    otherCategoryInput.id = 'otherCategoryInput';
-    otherCategoryInput.placeholder = 'Nhập danh mục khác';
-    otherCategoryInput.style.display = 'none';
-    otherCategoryInput.style.marginTop = '10px';
-    otherCategoryInput.style.padding = '8px';
-    otherCategoryInput.style.borderRadius = '4px';
-    otherCategoryInput.style.border = '1px solid #ddd';
-    otherCategoryInput.style.width = '100%';
-    otherCategoryInput.style.boxSizing = 'border-box';
-
-    // Thêm option "Khác" vào select
-    const categorySelect = document.getElementById('productCategory');
-    const otherOption = document.createElement('option');
-    otherOption.value = 'other';
-    otherOption.textContent = 'Khác';
-    categorySelect.appendChild(otherOption);
-
-    // Thêm input vào sau select
-    categorySelect.parentNode.insertBefore(otherCategoryInput, categorySelect.nextSibling);
-
-    // Thêm event listener cho select
-    categorySelect.addEventListener('change', toggleOtherCategory);
-
-    function toggleOtherCategory() {
-        const categorySelect = document.getElementById('productCategory');
-        const otherCategoryInput = document.getElementById('otherCategoryInput');
-        
-        if (categorySelect.value === 'other') {
-            otherCategoryInput.style.display = 'block';
-        } else {
-            otherCategoryInput.style.display = 'none';
-            otherCategoryInput.value = '';
-        }
-    }
-
     function addProduct() {
         const productName = document.getElementById('productName').value.trim();
-        const categorySelect = document.getElementById('productCategory');
-        const otherCategoryInput = document.getElementById('otherCategoryInput');
-        
-        let productCategory;
-        if (categorySelect.value === 'other') {
-            productCategory = otherCategoryInput.value.trim();
-            if (!productCategory) {
-                alert('Vui lòng nhập danh mục khác.');
-                return;
-            }
-        } else {
-            productCategory = categorySelect.value.trim();
-        }
 
-        if (!productName || !productCategory) {
+        if (!productName) {
             alert('Vui lòng điền đầy đủ thông tin.');
             return;
         }
@@ -97,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const newProductRef = database.ref('products').push();
         newProductRef.set({
             name: productName,
-            category: productCategory,
             variants: variants
         });
 
@@ -198,7 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function resetForm() {
         document.getElementById('productName').value = '';
-        document.getElementById('productCategory').value = '';
         variantContainer.innerHTML = '';
         renderProductList();
     }
@@ -222,14 +168,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     searchBar.addEventListener('input', renderProductList);
-    categorySelect.addEventListener('change', renderProductList);
 
     importButton.addEventListener('click', function() {
         uploadExcel.click();
     });
 
     uploadExcel.addEventListener('change', (event) => {
-        const file = event.target.files[0];
+        const file = event.target.files[ 0];
         if (!file) {
             alert('Vui lòng chọn file Excel để nhập.');
             return;
@@ -248,30 +193,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 jsonData.forEach((row, index) => {
                     if (index === 0) return; // Bỏ qua dòng tiêu đề
+                
+                    // Kiểm tra số lượng cột trong dòng
                     if (row.length >= 2) {
-                        const productName = row[0]?.toString().trim();
-                        const productCategory = row[1]?.toString().trim();
-
-                        if (!productName || !productCategory) return;
-
+                        const productName = row[0]?.toString().trim(); // Lấy tên sản phẩm từ cột đầu tiên
+                        const variants = row.slice(1).filter(v => v !== undefined && v !== null && v.toString().trim() !== ''); // Lấy các biến thể từ các cột còn lại
+                
+                        if (!productName) return; // Nếu không có tên sản phẩm, bỏ qua
+                
                         // Kiểm tra trùng lặp
                         const exists = products.some(product => 
                             product.name.toLowerCase() === productName.toLowerCase()
                         );
-
+                
                         if (exists) {
                             skipCount++;
-                            return;
+                            return; // Nếu sản phẩm đã tồn tại, bỏ qua
                         }
-
+                
                         // Thêm sản phẩm mới vào Firebase
                         const newProductRef = database.ref('products').push();
                         newProductRef.set({
                             name: productName,
-                            category: productCategory,
-                            variants: row.slice(2).filter(v => v !== undefined && v !== null && v.toString().trim() !== '')
+                            variants: variants // Lưu các biến thể
                         });
-
+                
                         importCount++;
                     }
                 });
