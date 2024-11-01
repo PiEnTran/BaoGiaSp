@@ -186,6 +186,31 @@ header {
     background-color: #c82333;
 }
 
+.delete-variant-button {
+    background-color: #dc3545; /* Màu đỏ */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px; /* Khoảng cách giữa nút và ô input */
+    vertical-align: middle; /* Canh giữa nút với input */
+}
+
+.delete-variant-button:hover {
+    background-color: #c82333; /* Màu đỏ đậm hơn khi hover */
+}
+
+/* Style cho ô input phân loại */
+.variant-input {
+    padding: 8px; /* Điều chỉnh padding cho phù hợp */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px; /* Điều chỉnh chiều rộng theo ý muốn */
+    margin-bottom: 10px; /* Khoảng cách giữa các input */
+}
+
+
 /* CSS cho thiết bị di động */
 @media (max-width: 768px) {
     body {
