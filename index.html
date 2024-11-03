@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Sản phẩm</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quản lý Sản phẩm</h1>
+            <div class="search-controls">
+                <div class="search-box">
+                    <input type="text" id="searchBar" placeholder="Tìm kiếm sản phẩm...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+         </select>
+                </div>
+        </header>
+
+        <div class="main-content">
+            <section class="product-management">
+                <div class="add-product-form">
+                    <h2><i class="fas fa-plus-circle"></i> Thêm sản phẩm mới</h2>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="productName">Tên sản phẩm</label>
+                            <input type="text" id="productName" required>
+                        </div>
+                    </div>
+                    <div id="variantContainer"></div>
+                    <button id="addVariantButton" class="small-button">Thêm phân loại</button>
+                    
+                    <div class="action-buttons">
+                        <button id="addProductButton" class="primary-button">
+                            <i class="fas fa-save"></i> Lưu sản phẩm
+                        </button>
+                    </div>
+
+                    <div class="import-section">
+                        <button id="importButton" class="small-button">
+                            <i class="fas fa-upload"></i> Nhập từ Excel
+                        </button>
+                        <input type="file" id="uploadExcel" accept=".xlsx, .xls" style="display: none;" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="product-display">
+                <h2>Sản phẩm</h2>
+                <div id="productList" class="product-grid"></div>
+                <div class="pagination">
+                    <button id="prevPage" class="page-button" disabled>Trang trước</button>
+                    <span id="pageInfo">Trang 1</span>
+                    <button id="nextPage" class="page-button" disabled>Trang sau</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+
+    <!-- Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+    <!-- Your custom script -->
+    <script src="script.js"></script>
+</body>
+</html>

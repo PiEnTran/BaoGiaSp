@@ -1,0 +1,326 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-controls {
+    display: flex;
+    align-items: center;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.search-box input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-icon {
+    margin-left: -30px;
+    cursor: pointer;
+}
+
+.category-filter {
+    margin-left: 10px;
+}
+
+.category-filter select {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.product-management, .product-display {
+    margin-bottom: 20px;
+}
+
+.add-product-form {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.product {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.product h3 {
+    color: #2c3e50;
+    margin-bottom: 12px;
+    font-size: 1.1em;
+}
+
+.variants-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.product-details {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #007bff;
+}
+
+.variant-item {
+    display: inline-block;
+    margin: 4px;
+    padding: 6px 12px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 15px;
+    font-size: 0.9em;
+    color: #495057;
+}
+
+.variant-group {
+    margin-bottom: 12px;
+}
+
+.variant-category {
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 6px;
+}
+
+.variant-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.variant-item {
+    background: #e9ecef;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    color: #495057;
+}
+
+
+
+.no-products {
+    color: #777;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Thêm khoảng cách phía trên cho phân trang */
+}
+
+.page-button {
+    background: #007bff; /* Màu nền */
+    color: white; /* Màu chữ */
+    border: none;
+    padding: 8px 15px; /* Khoảng cách bên trong */
+    border-radius: 4px; /* Bo tròn góc */
+    cursor: pointer; /* Con trỏ khi di chuột */
+    margin: 0 5px; /* Khoảng cách giữa các nút */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu nền */
+}
+
+.page-button:hover {
+    background: #0056b3; /* Màu nền khi di chuột */
+}
+
+.page-button:disabled {
+    background: #ccc; /* Màu nền khi vô hiệu hóa */
+    cursor: not-allowed; /* Con trỏ không cho phép */
+}
+
+.primary-button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px; /* Thêm khoảng cách cho nút */
+}
+
+.primary-button:hover {
+    background-color: #218838;
+}
+
+.small-button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px; /* Thêm khoảng cách cho nút */
+}
+
+.small-button:hover {
+    background-color: #0056b3;
+}
+
+.detail-button, .delete-button {
+    margin-top: 5px;
+    border: none;
+    background-color: #6c757d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 5px; /* Thêm khoảng cách cho nút */
+}
+
+.detail-button:hover {
+    background-color: #5a6268;
+}
+
+.delete-button {
+    background-color: #dc3545;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.delete-variant-button {
+    background-color: #dc3545; /* Màu đỏ */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px; /* Khoảng cách giữa nút và ô input */
+    vertical-align: middle; /* Canh giữa nút với input */
+}
+
+.delete-variant-button:hover {
+    background-color: #c82333; /* Màu đỏ đậm hơn khi hover */
+}
+
+/* Style cho ô input phân loại */
+.variant-input {
+    padding: 8px; /* Điều chỉnh padding cho phù hợp */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px; /* Điều chỉnh chiều rộng theo ý muốn */
+    margin-bottom: 10px; /* Khoảng cách giữa các input */
+}
+
+
+/* CSS cho thiết bị di động */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Kích thước font nhỏ hơn */
+        padding: 10px; /* Giảm padding cho body */
+    }
+    
+    .container {
+        padding: 15px; /* Giảm padding cho container */
+    }
+
+    header {
+        flex-direction: column; /* Xếp theo chiều dọc */
+        align-items: flex-start; /* Căn trái */
+    }
+
+    .search-controls {
+        flex-direction: column; /* Xếp theo chiều dọc */
+        align-items: stretch; /* Căn rộng */
+        margin-bottom: 10px; /* Thêm khoảng cách giữa các phần tử */
+    }
+
+    .search-box {
+        width: 100%; /* Đặt chiều rộng 100% */
+        margin-right: 0; /* Xóa margin bên phải */
+        margin-bottom: 10px; /* Thêm khoảng cách dưới */
+    }
+
+    .category-filter {
+        width: 100%; /* Đặt chiều rộng 100% */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Sử dụng các cột nhỏ hơn */
+    }
+
+    .product {
+        padding: 8px; /* Giảm padding trong sản phẩm */
+    }
+
+    .pagination {
+        flex-direction: column; /* Xếp theo chiều dọc */
+        align-items: stretch; /* Căn rộng */
+    }
+}
+
+/* CSS cho máy tính */
+@media (min-width: 769px) {
+    body {
+        font-size: 16px; /* Kích thước font lớn hơn */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Sử dụng các cột lớn hơn */
+    }
+
+    .search-controls {
+        margin-bottom: 0; /* Xóa margin dưới cùng */
+    }
+}
